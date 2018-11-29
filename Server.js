@@ -51,6 +51,15 @@ app.post('/webhook/', function (req, res) {
                 sendGenericMessage(sender)
                 continue
             }
+            if(text==="Trời mưa"){
+                sendTextMessage(sender,"Bạn nhớ mặc áo mưa vào nhé")
+            }
+            if(text==="Tôi không có áo mưa"){
+                sendTextMessage(sender,"Bạn có thể ghé vào một cửa hàng tạp hoá gần nhất")
+            }
+            if(text==="Nhưng mưa to quá"){
+                sendTextMessage(sender,"Bạn đợi tạnh mưa rồi về nhé")
+            }
             if (text === "hello") {
                 sendTextMessageCustom(sender)
                 continue
