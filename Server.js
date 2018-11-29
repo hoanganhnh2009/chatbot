@@ -64,7 +64,7 @@ app.post('/webhook/', function (req, res) {
                 sendTextMessageCustom(sender)
                 continue
             }
-            sendTextMessage(sender, "parrot: " + text.substring(0, 200) + "\n" + sender)
+            // sendTextMessage(sender, "parrot: " + text.substring(0, 200) + "\n" + sender)
         }
         if (event.postback) {
             text = JSON.stringify(event.postback)
