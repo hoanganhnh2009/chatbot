@@ -18,8 +18,8 @@ app.get('/', function (req, res) {
 
 
 app.get('/sendmessage', function (req, res) {
-    console.log('aaaa')
-    res.send('dasdaddsa')
+    var token = "EAAG41f0vuGYBAJHI9KcXyqBrvOKvQbYabohleKABAZBlC9bsB6ZCZAnY9T5eRI3ZBwroRO6N92xXVkaZCe7ylmjlttgHIHFZAlZBzKDLoy295ES2ofPzY1BwODZCdhJ0hhaS03HuZA0VUgZBhkSfJaqRmOvZAnS54hlSvAW4eSC2bfq9wZDZD"
+
 })
 
 // for Facebook verification
@@ -105,16 +105,16 @@ function sendGenericMessage(sender) {
                     "image_url": "http://1u88jj3r4db2x4txp44yqfj1.wpengine.netdna-cdn.com/wp-content/uploads/2016/04/chatbot-930x659.jpg",
                     "buttons": [{
                         "type": "web_url",
-                        "url": "https://www.facebook.com/groups/aichatbots/",
-                        "title": "FB Chatbot Group"
+                        "url": "https://www.facebook.com/abitplus/",
+                        "title": "FB Abit Plus"
                     }, {
                         "type": "web_url",
                         "url": "https://www.reddit.com/r/Chat_Bots/",
-                        "title": "Chatbots on Reddit"
+                        "title": "Chatbots on Abit Group"
                     }, {
                         "type": "web_url",
-                        "url": "https://twitter.com/aichatbots",
-                        "title": "Chatbots on Twitter"
+                        "url": "https://www.facebook.com/shopmemuavn/",
+                        "title": "Chatbots Của Shop Me Mua"
                     }],
                 }, {
                     "title": "Chatbots FAQ",
