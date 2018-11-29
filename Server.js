@@ -16,6 +16,12 @@ app.get('/', function (req, res) {
     res.send('Hello , I am a chat bot')
 })
 
+
+app.get('/sendmessage', function (req, res) {
+    console.log('aaaa')
+    res.send('dasdaddsa')
+})
+
 // for Facebook verification
 app.get('/webhook/', function (req, res) {
     console.log('web hook get')
@@ -56,9 +62,6 @@ app.post('/webhook/', function (req, res) {
     res.sendStatus(200)
 })
 
-app.get('/send-message', function (req, res) {
-    console.log('aaaa')
-})
 
 // var token = "EAAYxQDnmq74BACAQ4HIvckVQrG4ZAueKXsZCDpKH7oB4kPaS7IalUnRogUUTICP8OFh112QlKjKQEqEwB30GFYKOEKrHMCePwJwJdmxXR4l8DFQ9P4M9F8lI66orLMlH5JAPGOSKth6NH4rWrhmGdR8ZBOZBtKLFWiH843rL6wZDZD"
 var token = "EAAG41f0vuGYBAJHI9KcXyqBrvOKvQbYabohleKABAZBlC9bsB6ZCZAnY9T5eRI3ZBwroRO6N92xXVkaZCe7ylmjlttgHIHFZAlZBzKDLoy295ES2ofPzY1BwODZCdhJ0hhaS03HuZA0VUgZBhkSfJaqRmOvZAnS54hlSvAW4eSC2bfq9wZDZD"
