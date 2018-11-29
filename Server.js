@@ -6,7 +6,7 @@ var app = express()
 app.set('port', (process.env.PORT || 5000))
 
 // Process application/x-www-form-urlencoded
-app.use(bodyParser.urlencoded({extended: false}))
+app.use(bodyParser.urlencoded({ extended: false }))
 
 // Process application/json
 app.use(bodyParser.json())
@@ -26,7 +26,7 @@ app.get('/webhook/', function (req, res) {
 })
 
 // Spin up the server
-app.listen(app.get('port'), function() {
+app.listen(app.get('port'), function () {
     console.log('running on port', app.get('port'))
 })
 
@@ -34,6 +34,7 @@ app.listen(app.get('port'), function() {
 // API End Point - added by Stefan
 
 app.post('/webhook/', function (req, res) {
+    console.log(req)
     messaging_events = req.body.entry[0].messaging
     for (i = 0; i < messaging_events.length; i++) {
         event = req.body.entry[0].messaging[i]
@@ -48,7 +49,7 @@ app.post('/webhook/', function (req, res) {
         }
         if (event.postback) {
             text = JSON.stringify(event.postback)
-            sendTextMessage(sender, "Postback received: "+text.substring(0, 200), token)
+            sendTextMessage(sender, "Postback received: " + text.substring(0, 200), token)
             continue
         }
     }
@@ -61,17 +62,17 @@ var token = "EAAYxQDnmq74BACAQ4HIvckVQrG4ZAueKXsZCDpKH7oB4kPaS7IalUnRogUUTICP8OF
 
 function sendTextMessage(sender, text) {
     messageData = {
-        text:text
+        text: text
     }
     request({
         url: 'https://graph.facebook.com/v2.6/me/messages',
-        qs: {access_token:token},
+        qs: { access_token: token },
         method: 'POST',
         json: {
-            recipient: {id:sender},
+            recipient: { id: sender },
             message: messageData,
         }
-    }, function(error, response, body) {
+    }, function (error, response, body) {
         if (error) {
             console.log('Error sending messages: ', error)
         } else if (response.body.error) {
@@ -101,7 +102,7 @@ function sendGenericMessage(sender) {
                         "type": "web_url",
                         "url": "https://www.reddit.com/r/Chat_Bots/",
                         "title": "Chatbots on Reddit"
-                    },{
+                    }, {
                         "type": "web_url",
                         "url": "https://twitter.com/aichatbots",
                         "title": "Chatbots on Twitter"
@@ -114,7 +115,7 @@ function sendGenericMessage(sender) {
                         "type": "postback",
                         "title": "What's the benefit?",
                         "payload": "Chatbots make content interactive instead of static",
-                    },{
+                    }, {
                         "type": "postback",
                         "title": "What can Chatbots do",
                         "payload": "One day Chatbots will control the Internet of Things! You will be able to control your homes temperature with a text",
@@ -123,7 +124,7 @@ function sendGenericMessage(sender) {
                         "title": "The Future",
                         "payload": "Chatbots are fun! One day your BFF might be a Chatbot",
                     }],
-                },  {
+                }, {
                     "title": "Learning More",
                     "subtitle": "Aking the Deep Questions",
                     "image_url": "http://www.brandknewmag.com/wp-content/uploads/2015/12/cortana.jpg",
@@ -131,7 +132,7 @@ function sendGenericMessage(sender) {
                         "type": "postback",
                         "title": "AIML",
                         "payload": "Checkout Artificial Intelligence Mark Up Language. Its easier than you think!",
-                    },{
+                    }, {
                         "type": "postback",
                         "title": "Machine Learning",
                         "payload": "Use python to teach your maching in 16D space in 15min",
@@ -140,19 +141,19 @@ function sendGenericMessage(sender) {
                         "title": "Communities",
                         "payload": "Online communities & Meetups are the best way to stay ahead of the curve!",
                     }],
-                }]  
-            } 
+                }]
+            }
         }
     }
     request({
         url: 'https://graph.facebook.com/v2.6/me/messages',
-        qs: {access_token:token},
+        qs: { access_token: token },
         method: 'POST',
         json: {
-            recipient: {id:sender},
+            recipient: { id: sender },
             message: messageData,
         }
-    }, function(error, response, body) {
+    }, function (error, response, body) {
         if (error) {
             console.log('Error sending messages: ', error)
         } else if (response.body.error) {
