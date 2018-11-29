@@ -19,6 +19,7 @@ app.get('/', function (req, res) {
 
 // for Facebook verification
 app.get('/webhook/', function (req, res) {
+    console.log('web hook get')
     if (req.query['hub.verify_token'] === 'Aha_Moment_Labs') {
         res.send(req.query['hub.challenge'])
     }
