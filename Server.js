@@ -51,6 +51,10 @@ app.post('/webhook/', function (req, res) {
                 sendGenericMessage(sender)
                 continue
             }
+            if (text === "hello") {
+                sendTextMessageCustom(sender)
+                continue
+            }
             sendTextMessage(sender, "parrot: " + text.substring(0, 200))
         }
         if (event.postback) {
@@ -72,6 +76,29 @@ var token = "EAAG41f0vuGYBAJHI9KcXyqBrvOKvQbYabohleKABAZBlC9bsB6ZCZAnY9T5eRI3ZBw
 function sendTextMessage(sender, text) {
     messageData = {
         text: text
+    }
+    request({
+        url: 'https://graph.facebook.com/v2.6/me/messages',
+        qs: { access_token: token },
+        method: 'POST',
+        json: {
+            recipient: { id: sender },
+            message: messageData,
+        }
+    }, function (error, response, body) {
+        if (error) {
+            console.log('Error sending messages: ', error)
+        } else if (response.body.error) {
+            console.log('Error: ', response.body.error)
+        }
+    })
+}
+
+// function to echo back messages - added by Nguyen Huu Thanh
+
+function sendTextMessageCustom(sender, text) {
+    messageData = {
+        text: 'Chào bạn tùng đẹp troai, chúng tôi có thể giúp gì cho bạn'
     }
     request({
         url: 'https://graph.facebook.com/v2.6/me/messages',
