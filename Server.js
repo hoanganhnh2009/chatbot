@@ -1,3 +1,6 @@
+#!/usr/bin/env node
+// var args = process.argv.slice(2)
+
 var express = require('express')
 var bodyParser = require('body-parser')
 var request = require('request')
@@ -45,26 +48,28 @@ app.post('/webhook/', function (req, res) {
     for (i = 0; i < messaging_events.length; i++) {
         event = req.body.entry[0].messaging[i]
         sender = event.sender.id
+        console.log('sender')
+        console.log(sender)
         if (event.message && event.message.text) {
             text = event.message.text
             if (text === 'hi') {
                 sendGenericMessage(sender)
                 continue
             }
-            if(text==="Trời mưa"){
-                sendTextMessage(sender,"Bạn nhớ mặc áo mưa vào nhé")
+            if (text === "Trời mưa") {
+                sendTextMessage(sender, "Bạn nhớ mặc áo mưa vào nhé")
             }
-            if(text==="Tôi không có áo mưa"){
-                sendTextMessage(sender,"Bạn có thể ghé vào một cửa hàng tạp hoá gần nhất")
+            if (text === "Tôi không có áo mưa") {
+                sendTextMessage(sender, "Bạn có thể ghé vào một cửa hàng tạp hoá gần nhất")
             }
-            if(text==="Nhưng mưa to quá"){
-                sendTextMessage(sender,"Bạn đợi tạnh mưa rồi về nhé")
+            if (text === "Nhưng mưa to quá") {
+                sendTextMessage(sender, "Bạn đợi tạnh mưa rồi về nhé")
             }
             if (text === "hello") {
                 sendTextMessageCustom(sender)
                 continue
             }
-            // sendTextMessage(sender, "parrot: " + text.substring(0, 200) + "\n" + sender)
+            sendTextMessage(sender, "parrot: " + text.substring(0, 200) + "\n" + sender)
         }
         if (event.postback) {
             text = JSON.stringify(event.postback)
@@ -77,7 +82,7 @@ app.post('/webhook/', function (req, res) {
 
 
 // var token = "EAAYxQDnmq74BACAQ4HIvckVQrG4ZAueKXsZCDpKH7oB4kPaS7IalUnRogUUTICP8OFh112QlKjKQEqEwB30GFYKOEKrHMCePwJwJdmxXR4l8DFQ9P4M9F8lI66orLMlH5JAPGOSKth6NH4rWrhmGdR8ZBOZBtKLFWiH843rL6wZDZD"
-var token = "EAAG41f0vuGYBAJHI9KcXyqBrvOKvQbYabohleKABAZBlC9bsB6ZCZAnY9T5eRI3ZBwroRO6N92xXVkaZCe7ylmjlttgHIHFZAlZBzKDLoy295ES2ofPzY1BwODZCdhJ0hhaS03HuZA0VUgZBhkSfJaqRmOvZAnS54hlSvAW4eSC2bfq9wZDZD"
+var token = "EAACW5Fg5N2IBAAc2zo3UNpz4c5hxYQ8sD03ITfsLNlBYLURZAOH3oWfGfUdp6bys3jT3zNBoHx0p3gx6Eswja14D13SktxPRhGJnSa94Wi8o9PSPO7LEFeXW5oFaYcNGPQZCxpgKNAPt5k3FQTgTUntlzGfBvbl3PJy5QRXZBv4YYTrtrWpRZA9GDZCPvBMcZD"
 
 
 // function to echo back messages - added by Stefan
@@ -101,6 +106,7 @@ function sendTextMessage(sender, text) {
             console.log('Error: ', response.body.error)
         }
     })
+    // continue
 }
 
 // function to echo back messages - added by Nguyen Huu Thanh
