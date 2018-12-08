@@ -43,12 +43,12 @@ app.listen(app.get('port'), function () {
 // API End Point - added by Stefan
 
 app.post('/webhook/', function (req, res) {
-    console.log(req)
+//     console.log(req)
     messaging_events = req.body.entry[0].messaging
     for (i = 0; i < messaging_events.length; i++) {
         event = req.body.entry[0].messaging[i]
         sender = event.sender.id
-        console.log('sender')
+        console.log('sender id')
         console.log(sender)
         if (event.message && event.message.text) {
             text = event.message.text
@@ -82,7 +82,7 @@ app.post('/webhook/', function (req, res) {
 
 
 // var token = "EAAYxQDnmq74BACAQ4HIvckVQrG4ZAueKXsZCDpKH7oB4kPaS7IalUnRogUUTICP8OFh112QlKjKQEqEwB30GFYKOEKrHMCePwJwJdmxXR4l8DFQ9P4M9F8lI66orLMlH5JAPGOSKth6NH4rWrhmGdR8ZBOZBtKLFWiH843rL6wZDZD"
-var token = "EAACW5Fg5N2IBAAc2zo3UNpz4c5hxYQ8sD03ITfsLNlBYLURZAOH3oWfGfUdp6bys3jT3zNBoHx0p3gx6Eswja14D13SktxPRhGJnSa94Wi8o9PSPO7LEFeXW5oFaYcNGPQZCxpgKNAPt5k3FQTgTUntlzGfBvbl3PJy5QRXZBv4YYTrtrWpRZA9GDZCPvBMcZD"
+var token = "EAAG41f0vuGYBAG3qZAxB2TV0BJbRByrxWoZAQBiKFZCI9b3biEJXXnebyfuxeZCGLhzyZCkQKQmFTYIJYTkd6ebThqjH9ufAylA2BuagI6g0uIRwYw7XzbbGMxZCWJj3neG2uXgo3rAnY2wyQp3JIEiNRpzZBya1Ywu0kXaDWZBEiQZDZD"
 
 
 // function to echo back messages - added by Stefan
